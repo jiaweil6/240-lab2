@@ -22,7 +22,7 @@ module ChangeMachine (
   logic ChangeNeeded;            // CgtP (Paid > Cost)
   logic [3:0] Change;            // Paid - Cost
 
-  logic [2:0] first_coin, second_coin;
+  logic [2:0] first_coin, second_coin; // chosen coins (0/1/3/5)
   logic [3:0] fc_val, sc_val;    // numeric value of chosen coin (0/1/3/5)
 
   logic [1:0] P1, T1, C1;        // availability AFTER first coin
@@ -39,10 +39,8 @@ module ChangeMachine (
 
   // Compare-derived signals / LEDs
   assign ChangeNeeded = CgtP;
-  assign CoughUpMore  = CltP;
-
-  // NOTE: If your lab defines ExactAmount differently, edit this line.
-  assign ExactAmount  = CeqP && (Paid != 4'b0000) && (Cost != 4'b0000);
+  assign CoughUpMore = CltP;
+  assign ExactAmount = CeqP && (Paid != 4'b0000) && (Cost != 4'b0000);
 
   ChangeSubtract u_sub (
     .Paid(Paid),
@@ -50,17 +48,17 @@ module ChangeMachine (
     .Change(Change)
   );
 
-  FirstCoinPick u_pick1 (
+  CoinPick u_pickFirst (
     .Change(Change),
     .ChangeNeeded(ChangeNeeded),
     .Pentagons(Pentagons),
     .Triangles(Triangles),
     .Circles(Circles),
-    .FirstCoin(first_coin),
-    .FC_val(fc_val),
-    .After1_P(P1),
-    .After1_T(T1),
-    .After1_C(C1)
+    .Coin(first_coin),
+    .val(fc_val),
+    .After_P(P1),
+    .After_T(T1),
+    .After_C(C1)
   );
 
   RemainingAfterFirst u_rem1 (
@@ -69,7 +67,7 @@ module ChangeMachine (
     .Rem1(Rem1)
   );
 
-  SecondCoinPick u_pick2 (
+  SecondCoinPick u_pickSecond (
     .Rem1(Rem1),
     .ChangeNeeded(ChangeNeeded),
     .Pentagons(P1),
@@ -125,46 +123,50 @@ module ChangeSubtract (
 endmodule : ChangeSubtract
 
 
-// FirstCoinPick: choose FirstCoin using priority 5 then 3 then 1, respecting availability
-module FirstCoinPick (
+// CoinPick: choose the coin using priority 5 then 3 then 1
+// Respecting availability
+module CoinPick (
   input  logic [3:0] Change,
   input  logic       ChangeNeeded,
   input  logic [1:0] Pentagons,
   input  logic [1:0] Triangles,
   input  logic [1:0] Circles,
 
-  output logic [2:0] FirstCoin,
-  output logic [3:0] FC_val,
+  output logic [2:0] Coin,
+  output logic [3:0] val,
 
-  output logic [1:0] After1_P,
-  output logic [1:0] After1_T,
-  output logic [1:0] After1_C
+  output logic [1:0] After_P,
+  output logic [1:0] After_T,
+  output logic [1:0] After_C
 );
 
+  logic can5, can3, can1;
+
   always_comb begin
-    // PSEUDOCODE:
-    // can5 = ChangeNeeded && (Change >= 5) && (Pentagons > 0)
-    // can3 = ChangeNeeded && (Change >= 3) && (Triangles > 0)
-    // can1 = ChangeNeeded && (Change >= 1) && (Circles   > 0)
-    //
-    // if can5: FirstCoin=3'b101, FC_val=5
-    // else if can3: FirstCoin=3'b011, FC_val=3
-    // else if can1: FirstCoin=3'b001, FC_val=1
-    // else: FirstCoin=3'b000, FC_val=0
-    //
-    // After1_P = Pentagons - (FirstCoin==3'b101 ? 1 : 0)
-    // After1_T = Triangles - (FirstCoin==3'b011 ? 1 : 0)
-    // After1_C = Circles   - (FirstCoin==3'b001 ? 1 : 0)
+    can5 = ChangeNeeded && (Change >= 5) && (Pentagons > 0);
+    can3 = ChangeNeeded && (Change >= 3) && (Triangles > 0);
+    can1 = ChangeNeeded && (Change >= 1) && (Circles > 0);
 
-    FirstCoin = 3'b000;
-    FC_val    = 4'b0000;
-
-    After1_P  = Pentagons;
-    After1_T  = Triangles;
-    After1_C  = Circles;
+    if (can5) begin
+      Coin = 3'b101;
+      val = 4'b0101;
+    end else if (can3) begin
+      Coin = 3'b011;
+      val = 4'b0011;
+    end else if (can1) begin
+      Coin = 3'b001;
+      val = 4'b0001;
+    end else begin
+      Coin = 3'b000;
+      val = 4'b0000;
+    end
+    
+    After_P = Pentagons - (Coin==3'b101 ? 1 : 0);
+    After_T = Triangles - (Coin==3'b011 ? 1 : 0);
+    After_C = Circles - (Coin==3'b001 ? 1 : 0);
   end
 
-endmodule : FirstCoinPick
+endmodule : CoinPick
 
 
 // RemainingAfterFirst: Rem1 = Change - FC_val
@@ -177,36 +179,6 @@ module RemainingAfterFirst (
     Rem1 = Change - FC_val
   end
 endmodule : RemainingAfterFirst
-
-
-// SecondCoinPick: choose SecondCoin with same priority using Rem1 and updated availability
-module SecondCoinPick (
-  input  logic [3:0] Rem1,
-  input  logic       ChangeNeeded,
-  input  logic [1:0] Pentagons,
-  input  logic [1:0] Triangles,
-  input  logic [1:0] Circles,
-
-  output logic [2:0] SecondCoin,
-  output logic [3:0] SC_val
-);
-
-  always_comb begin
-    // PSEUDOCODE:
-    // can5 = ChangeNeeded && (Rem1 >= 5) && (Pentagons > 0)
-    // can3 = ChangeNeeded && (Rem1 >= 3) && (Triangles > 0)
-    // can1 = ChangeNeeded && (Rem1 >= 1) && (Circles   > 0)
-    //
-    // if can5: SecondCoin=3'b101, SC_val=5
-    // else if can3: SecondCoin=3'b011, SC_val=3
-    // else if can1: SecondCoin=3'b001, SC_val=1
-    // else: SecondCoin=3'b000, SC_val=0
-
-    SecondCoin = 3'b000;
-    SC_val     = 4'b0000;
-  end
-
-endmodule : SecondCoinPick
 
 
 // FinalRemaining: Remaining = Change - FC_val - SC_val
