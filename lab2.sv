@@ -33,14 +33,12 @@ module ChangeMachine (
     .Cost(Cost),
     .Paid(Paid),
     .CeqP(CeqP),
-    .CltP(CltP),
-    .CgtP(CgtP)
+    .CltP(ChangeNeeded),
+    .CgtP(CoughUpMore)
   );
 
   // Compare-derived signals / LEDs
-  assign ChangeNeeded = CgtP;
-  assign CoughUpMore = CltP;
-  assign ExactAmount = CeqP && (Paid != 4'b0000) && (Cost != 4'b0000);
+  assign ExactAmount = CeqP && (Paid != 4'b0000);
 
   ChangeSubtract u_sub (
     .Paid(Paid),
