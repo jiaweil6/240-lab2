@@ -18,7 +18,7 @@ module ChangeMachine (
 );
 
   // Internal wires
-  logic CeqP, CltP, CgtP;        // compare flags
+  logic PeqC, PltC, PgtC;        // compare flags
   logic ChangeNeeded;            // CgtP (Paid > Cost)
   logic [3:0] Change;            // Paid - Cost
 
@@ -32,18 +32,20 @@ module ChangeMachine (
   CompareBlock u_cmp (
     .Cost(Cost),
     .Paid(Paid),
-    .CeqP(CeqP),
-    .CltP(ChangeNeeded),
-    .CgtP(CoughUpMore)
+    .PeqC(PeqC),
+    .PltC(PltC),
+    .PgtC(PgtC)
   );
 
   // Compare-derived signals / LEDs
-  assign ExactAmount = CeqP && (Paid != 4'b0000);
+  assign ExactAmount = PeqC && (Paid != 4'b0000);
+  assign CoughUpMore = PltC;
+  assign ChangeNeeded = PgtC;
 
-  ChangeSubtract u_sub (
-    .Paid(Paid),
-    .Cost(Cost),
-    .Change(Change)
+  Subtracter u_sub (
+    .A(Paid),
+    .B(Cost),
+    .AmB(Change)
   );
 
   CoinPick u_pick_first (
@@ -53,11 +55,12 @@ module ChangeMachine (
     .Triangles(Triangles),
     .Circles(Circles),
     .Coin(FirstCoin4),
-    .val(FCval),
     .After_P(P1),
     .After_T(T1),
     .After_C(C1)
   );
+
+  assign FCval = FirstCoin4;
 
   Subtracter u_rem1 (
     .A(Change),
@@ -66,14 +69,15 @@ module ChangeMachine (
   );
 
   CoinPick u_pick_second (
-    .Rem1(Rem1),
+    .Change(Rem1),
     .ChangeNeeded(ChangeNeeded),
     .Pentagons(P1),
     .Triangles(T1),
     .Circles(C1),
-    .Coin(SecondCoin4),
-    .val(SCval)
+    .Coin(SecondCoin4)
   );
+
+  assign SCval = SecondCoin4;
 
   Subtracter u_rem_final (
     .A(Change),
@@ -153,18 +157,18 @@ module CoinPick (
     end else begin
       Coin = 4'b0000;
     end
-    
-    // update inventory
-    UpdateInventory u_update (
-      .Pentagons(Pentagons),
-      .Triangles(Triangles),
-      .Circles(Circles),
-      .Coin(Coin),
-      .After_P(After_P),
-      .After_T(After_T),
-      .After_C(After_C)
-    );
   end
+
+  // update inventory
+  UpdateInventory u_update (
+    .Pentagons(Pentagons),
+    .Triangles(Triangles),
+    .Circles(Circles),
+    .Coin(Coin),
+    .After_P(After_P),
+    .After_T(After_T),
+    .After_C(After_C)
+  );
 
 endmodule : CoinPick
 

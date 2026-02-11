@@ -1,0 +1,9 @@
+{"vcs1":{"timestamp_begin":1770836861.717863870, "rt":0.58, "ut":0.25, "st":0.22}}
+{"vcselab":{"timestamp_begin":1770836862.475024793, "rt":0.59, "ut":0.42, "st":0.11}}
+{"link":{"timestamp_begin":1770836863.201287997, "rt":0.73, "ut":0.34, "st":0.40}}
+{"SNPS_VCS_INTERNAL_ROOT_START_TIME": 1770836860.969834500}
+{"VCS_COMP_START_TIME": 1770836860.969834500}
+{"VCS_COMP_END_TIME": 1770836864.099804061}
+{"VCS_USER_OPTIONS": "-sverilog lab2.sv lab2_test.sv -top UpdateInventory_tb"}
+{"vcs1": {"peak_mem": 2879233}}
+{"stitch_vcselab": {"peak_mem": 2879283}}

@@ -1,0 +1,9 @@
+{"vcs1":{"timestamp_begin":1770836878.997794571, "rt":0.59, "ut":0.24, "st":0.23}}
+{"vcselab":{"timestamp_begin":1770836879.757032444, "rt":0.55, "ut":0.40, "st":0.10}}
+{"link":{"timestamp_begin":1770836880.451650778, "rt":0.75, "ut":0.32, "st":0.42}}
+{"SNPS_VCS_INTERNAL_ROOT_START_TIME": 1770836878.270637678}
+{"VCS_COMP_START_TIME": 1770836878.270637678}
+{"VCS_COMP_END_TIME": 1770836881.367652723}
+{"VCS_USER_OPTIONS": "-sverilog lab2.sv lab2_test.sv -top CoinPick_tb"}
+{"vcs1": {"peak_mem": 2880138}}
+{"stitch_vcselab": {"peak_mem": 2880191}}
