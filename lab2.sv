@@ -22,11 +22,11 @@ module ChangeMachine (
   logic ChangeNeeded;            // CgtP (Paid > Cost)
   logic [3:0] Change;            // Paid - Cost
 
-  logic [2:0] first_coin, second_coin; // chosen coins (0/1/3/5)
-  logic [3:0] fc_val, sc_val;    // numeric value of chosen coin (0/1/3/5)
+  logic [3:0] FirstCoin4, SecondCoin4; // chosen coins (0/1/3/5)
+  logic [3:0] FCval, SCval;    // numeric value of chosen coin (0/1/3/5)
 
   logic [1:0] P1, T1, C1;        // availability AFTER first coin
-  logic [3:0] Rem1;              // remaining after first coin (Change - fc_val)
+  logic [3:0] Rem1;              // remaining after first coin (Change - FCval)
 
   // Submodule instances
   CompareBlock u_cmp (
@@ -54,17 +54,17 @@ module ChangeMachine (
     .Pentagons(Pentagons),
     .Triangles(Triangles),
     .Circles(Circles),
-    .Coin(first_coin),
-    .val(fc_val),
+    .Coin(FirstCoin4),
+    .val(FCval),
     .After_P(P1),
     .After_T(T1),
     .After_C(C1)
   );
 
-  RemainingAfterFirst u_rem1 (
-    .Change(Change),
-    .FC_val(fc_val),
-    .Rem1(Rem1)
+  Subtracter u_rem1 (
+    .A(Change),
+    .B(FCval),
+    .AmB(Rem1)
   );
 
   CoinPick u_pick_second (
@@ -73,22 +73,21 @@ module ChangeMachine (
     .Pentagons(P1),
     .Triangles(T1),
     .Circles(C1),
-    .Coin(second_coin),
-    .val(sc_val)
+    .Coin(SecondCoin4),
+    .val(SCval)
   );
 
-  FinalRemaining u_rem_final (
-    .Change(Change),
-    .FC_val(fc_val),
-    .SC_val(sc_val),
-    .Remaining(Remaining)
+  Subtracter u_rem_final (
+    .A(Change),
+    .B(FCval + SCval),
+    .AmB(Remaining)
   );
 
   assign NotEnoughChange = ChangeNeeded && (Remaining != 4'b0000);
 
   // Drive outputs (wire-through)
-  assign FirstCoin  = first_coin;
-  assign SecondCoin = second_coin;
+  assign FirstCoin  = FirstCoin4[2:0];
+  assign SecondCoin = SecondCoin4[2:0];
 
 endmodule : ChangeMachine
 
@@ -114,17 +113,16 @@ module CompareBlock (
 endmodule : CompareBlock
 
 
-// ChangeSubtract: Change = Paid - Cost (unsigned 4-bit)
-module ChangeSubtract (
-  input  logic [3:0] Paid,
-  input  logic [3:0] Cost,
-  output logic [3:0] Change
+// Subtracter
+module Subtracter (
+  input  logic [3:0] A,
+  input  logic [3:0] B,
+  output logic [3:0] AmB
 );
   always_comb begin
-    Change = Paid - Cost;
+    AmB = A - B;
   end
-endmodule : ChangeSubtract
-
+endmodule : Subtracter
 
 // CoinPick: choose the coin using priority 5 then 3 then 1
 // Respecting availability
@@ -135,7 +133,7 @@ module CoinPick (
   input  logic [1:0] Triangles,
   input  logic [1:0] Circles,
 
-  output logic [2:0] Coin,
+  output logic [3:0] Coin,
   output logic [1:0] After_P,
   output logic [1:0] After_T,
   output logic [1:0] After_C
@@ -149,13 +147,13 @@ module CoinPick (
     can1 = ChangeNeeded && (Change >= 1) && (Circles > 0);
 
     if (can5) begin
-      Coin = 3'b101;
+      Coin = 4'b0101;
     end else if (can3) begin
-      Coin = 3'b011;
+      Coin = 4'b0011;
     end else if (can1) begin
-      Coin = 3'b001;
+      Coin = 4'b0001;
     end else begin
-      Coin = 3'b000;
+      Coin = 4'b0000;
     end
     
     // update inventory
@@ -178,39 +176,14 @@ module UpdateInventory (
   input logic [1:0] Pentagons,
   input logic [1:0] Triangles,
   input logic [1:0] Circles,
-  input logic [2:0] Coin,
+  input logic [3:0] Coin,
   output logic [1:0] After_P,
   output logic [1:0] After_T,
   output logic [1:0] After_C
 );
   always_comb begin
-    After_P = Pentagons - (Coin==3'b101 ? 1 : 0);
-    After_T = Triangles - (Coin==3'b011 ? 1 : 0);
-    After_C = Circles - (Coin==3'b001 ? 1 : 0);
+    After_P = Pentagons - (Coin==4'b0101 ? 1 : 0);
+    After_T = Triangles - (Coin==4'b0011 ? 1 : 0);
+    After_C = Circles - (Coin==4'b0001 ? 1 : 0);
   end
 endmodule : UpdateInventory
-
-
-// RemainingAfterFirst: Rem1 = Change - FC_val
-module RemainingAfterFirst (
-  input  logic [3:0] Change,
-  input  logic [3:0] FC_val,
-  output logic [3:0] Rem1
-);
-  always_comb begin
-    Rem1 = Change - FC_val
-  end
-endmodule : RemainingAfterFirst
-
-
-// FinalRemaining: Remaining = Change - FC_val - SC_val
-module FinalRemaining (
-  input  logic [3:0] Change,
-  input  logic [3:0] FC_val,
-  input  logic [3:0] SC_val,
-  output logic [3:0] Remaining
-);
-  always_comb begin
-    Remaining = Change - FC_val - SC_val;
-  end
-endmodule : FinalRemaining
