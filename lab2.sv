@@ -48,7 +48,7 @@ module ChangeMachine (
     .Change(Change)
   );
 
-  CoinPick u_pickFirst (
+  CoinPick u_pick_first (
     .Change(Change),
     .ChangeNeeded(ChangeNeeded),
     .Pentagons(Pentagons),
@@ -67,14 +67,14 @@ module ChangeMachine (
     .Rem1(Rem1)
   );
 
-  SecondCoinPick u_pickSecond (
+  CoinPick u_pick_second (
     .Rem1(Rem1),
     .ChangeNeeded(ChangeNeeded),
     .Pentagons(P1),
     .Triangles(T1),
     .Circles(C1),
-    .SecondCoin(second_coin),
-    .SC_val(sc_val)
+    .Coin(second_coin),
+    .val(sc_val)
   );
 
   FinalRemaining u_rem_final (
@@ -93,7 +93,10 @@ module ChangeMachine (
 endmodule : ChangeMachine
 
 
+
+// ==========
 // Submodules
+// ==========
 
 // CompareBlock: compute eq/lt/gt for Paid vs Cost
 module CompareBlock (
@@ -133,8 +136,6 @@ module CoinPick (
   input  logic [1:0] Circles,
 
   output logic [2:0] Coin,
-  output logic [3:0] val,
-
   output logic [1:0] After_P,
   output logic [1:0] After_T,
   output logic [1:0] After_C
@@ -149,24 +150,45 @@ module CoinPick (
 
     if (can5) begin
       Coin = 3'b101;
-      val = 4'b0101;
     end else if (can3) begin
       Coin = 3'b011;
-      val = 4'b0011;
     end else if (can1) begin
       Coin = 3'b001;
-      val = 4'b0001;
     end else begin
       Coin = 3'b000;
-      val = 4'b0000;
     end
     
+    // update inventory
+    UpdateInventory u_update (
+      .Pentagons(Pentagons),
+      .Triangles(Triangles),
+      .Circles(Circles),
+      .Coin(Coin),
+      .After_P(After_P),
+      .After_T(After_T),
+      .After_C(After_C)
+    );
+  end
+
+endmodule : CoinPick
+
+
+// Update inventory after coin pick
+module UpdateInventory (
+  input logic [1:0] Pentagons,
+  input logic [1:0] Triangles,
+  input logic [1:0] Circles,
+  input logic [2:0] Coin,
+  output logic [1:0] After_P,
+  output logic [1:0] After_T,
+  output logic [1:0] After_C
+);
+  always_comb begin
     After_P = Pentagons - (Coin==3'b101 ? 1 : 0);
     After_T = Triangles - (Coin==3'b011 ? 1 : 0);
     After_C = Circles - (Coin==3'b001 ? 1 : 0);
   end
-
-endmodule : CoinPick
+endmodule : UpdateInventory
 
 
 // RemainingAfterFirst: Rem1 = Change - FC_val
