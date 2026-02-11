@@ -2,24 +2,24 @@
 
 // Top-level: ChangeMachine
 module ChangeMachine (
-  input  logic [3:0] Cost,
-  input  logic [3:0] Paid,
-  input  logic [1:0] Pentagons,   // available count of 5
-  input  logic [1:0] Triangles,   // available count of 3
-  input  logic [1:0] Circles,     // available count of 1
+  input logic [3:0] Cost,
+  input logic [3:0] Paid,
+  input logic [1:0] Pentagons,   // available count of 5
+  input logic [1:0] Triangles,   // available count of 3
+  input logic [1:0] Circles,     // available count of 1
 
   output logic [2:0] FirstCoin,
   output logic [2:0] SecondCoin,
   output logic [3:0] Remaining,
 
-  output logic       ExactAmount,
-  output logic       CoughUpMore,
-  output logic       NotEnoughChange
+  output logic ExactAmount,
+  output logic CoughUpMore,
+  output logic NotEnoughChange
 );
 
   // Internal wires
-  logic eq, lt, gt;              // compare flags
-  logic ChangeNeeded;            // gt (Paid > Cost)
+  logic CeqP, CltP, CgtP;        // compare flags
+  logic ChangeNeeded;            // CgtP (Paid > Cost)
   logic [3:0] Change;            // Paid - Cost
 
   logic [2:0] first_coin, second_coin;
@@ -32,17 +32,17 @@ module ChangeMachine (
   CompareBlock u_cmp (
     .Cost(Cost),
     .Paid(Paid),
-    .eq(eq),
-    .lt(lt),
-    .gt(gt)
+    .CeqP(CeqP),
+    .CltP(CltP),
+    .CgtP(CgtP)
   );
 
   // Compare-derived signals / LEDs
-  assign ChangeNeeded = gt;
-  assign CoughUpMore  = lt;
+  assign ChangeNeeded = CgtP;
+  assign CoughUpMore  = CltP;
 
   // NOTE: If your lab defines ExactAmount differently, edit this line.
-  assign ExactAmount  = eq && (Paid != 4'b0000) && (Cost != 4'b0000);
+  assign ExactAmount  = CeqP && (Paid != 4'b0000) && (Cost != 4'b0000);
 
   ChangeSubtract u_sub (
     .Paid(Paid),
@@ -101,19 +101,14 @@ endmodule : ChangeMachine
 module CompareBlock (
   input  logic [3:0] Cost,
   input  logic [3:0] Paid,
-  output logic       eq,
-  output logic       lt,
-  output logic       gt
+  output logic       PeqC,
+  output logic       PltC,
+  output logic       PgtC
 );
   always_comb begin
-    // PSEUDOCODE:
-    // eq = (Paid == Cost)
-    // lt = (Paid <  Cost)
-    // gt = (Paid >  Cost)
-
-    eq = 1'b0;
-    lt = 1'b0;
-    gt = 1'b0;
+    PeqC = (Paid == Cost);
+    PltC = (Paid < Cost);
+    PgtC = (Paid > Cost);
   end
 endmodule : CompareBlock
 
@@ -125,9 +120,7 @@ module ChangeSubtract (
   output logic [3:0] Change
 );
   always_comb begin
-    // PSEUDOCODE:
-    // Change = Paid - Cost
-    Change = 4'b0000;
+    Change = Paid - Cost;
   end
 endmodule : ChangeSubtract
 
@@ -181,9 +174,7 @@ module RemainingAfterFirst (
   output logic [3:0] Rem1
 );
   always_comb begin
-    // PSEUDOCODE:
-    // Rem1 = Change - FC_val
-    Rem1 = 4'b0000;
+    Rem1 = Change - FC_val
   end
 endmodule : RemainingAfterFirst
 
@@ -226,8 +217,6 @@ module FinalRemaining (
   output logic [3:0] Remaining
 );
   always_comb begin
-    // PSEUDOCODE:
-    // Remaining = Change - FC_val - SC_val
-    Remaining = 4'b0000;
+    Remaining = Change - FC_val - SC_val;
   end
 endmodule : FinalRemaining
