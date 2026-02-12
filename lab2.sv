@@ -80,6 +80,13 @@ module ChangeMachine (
     .AmB(Remaining)
   );
 
+  always_comb begin
+    // if cough up more, remaining is 0
+    if (CoughUpMore) begin
+      Remaining = 4'b0000;
+    end
+  end
+
   assign NotEnoughChange = ChangeNeeded && (Remaining != 4'b0000);
 
   // Drive outputs (wire-through)

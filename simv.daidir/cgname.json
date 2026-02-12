@@ -5,11 +5,17 @@
         "module",
         1
     ],
-    "CompareBlock_tb": [
-        "CompareBlock_tb",
-        "zKC0J",
+    "CoinPick": [
+        "CoinPick",
+        "ipHWQ",
         "module",
         7
+    ],
+    "ChangeMachine_tb": [
+        "ChangeMachine_tb",
+        "A19fi",
+        "module",
+        2
     ],
     "...MASTER...": [
         "SIM",

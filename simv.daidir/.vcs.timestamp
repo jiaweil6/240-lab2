@@ -22,7 +22,7 @@
 -sverilog
 -top
 /afs/ece.cmu.edu/support/synopsys/synopsys.release/T-Foundation/vcs/T-2022.06/linux64/bin/vcs1
-CompareBlock_tb
+ChangeMachine_tb
 lab2.sv
 lab2_test.sv
 58
@@ -31,7 +31,7 @@ XIL_HOME=/afs/ece/support/xilinx/xilinx.release/Vivado-2024.2/Vivado/2024.2
 XILINX_VIVADO=/afs/ece.cmu.edu/support/xilinx/xilinx.release/Vivado-2024.2/Vivado/2024.2
 XILINX_VITIS=/afs/ece.cmu.edu/support/xilinx/xilinx.release/Vivado-2024.2/Vitis/2024.2
 XILINX_HLS=/afs/ece.cmu.edu/support/xilinx/xilinx.release/Vivado-2024.2/Vitis/2024.2
-XDG_SESSION_ID=2055
+XDG_SESSION_ID=2190
 XDG_RUNTIME_DIR=/run/user/2700447
 XDG_DATA_DIRS=/afs/andrew.cmu.edu/usr17/jiaweil6/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share:/usr/share
 VMR_MODE_FLAG=32
@@ -52,8 +52,8 @@ S_COLORS=auto
 SYN_DIR=/syn/T-2022.03-SP2
 SYNOPSYS_HOME=/afs/ece.cmu.edu/support/synopsys/synopsys.release/T-Foundation
 SSH_TTY=/dev/pts/4
-SSH_CONNECTION=172.26.114.216 61159 172.19.138.13 22
-SSH_CLIENT=172.26.114.216 61159 22
+SSH_CONNECTION=172.26.114.216 50486 172.19.138.13 22
+SSH_CLIENT=172.26.114.216 50486 22
 SSH_ASKPASS=/usr/libexec/openssh/gnome-ssh-askpass
 SNPS_VCS_CLANG_PATH=/afs/ece.cmu.edu/support/synopsys/synopsys.release/T-Foundation/vcs/T-2022.06/linux64/clang
 SNPS_INTERNAL_VCS_LINUX_OS=linux
@@ -88,11 +88,11 @@ BASH_FUNC__module_raw%%=() {  unset _mlshdbg;_ if [ "${MODULES_SILENT_SHELL_DEBU
 0
 2
 1770836811 lab2_test.sv
-1770835589 lab2.sv
+1770935083 lab2.sv
 4
 1654054205 /afs/ece.cmu.edu/support/synopsys/synopsys.release/T-Foundation/vcs/T-2022.06/linux64/lib/libvirsim.so
 1654053585 /afs/ece.cmu.edu/support/synopsys/synopsys.release/T-Foundation/vcs/T-2022.06/linux64/lib/liberrorinf.so
 1654053489 /afs/ece.cmu.edu/support/synopsys/synopsys.release/T-Foundation/vcs/T-2022.06/linux64/lib/libsnpsmalloc.so
 1654053565 /afs/ece.cmu.edu/support/synopsys/synopsys.release/T-Foundation/vcs/T-2022.06/linux64/lib/libvfs.so
-1770836909 simv.daidir
+1770935409 simv.daidir
 -1 partitionlib
