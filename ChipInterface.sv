@@ -16,6 +16,10 @@ module ChipInterface
     .HEX6(SecondCoin),
     .HEX5(Remaining1),
     .HEX4(Remaining0),
+    .HEX3(4'b0000),
+    .HEX2(4'b0000),
+    .HEX1(4'b0000),
+    .HEX0(4'b0000),
     .dec_points(8'b0000_0000),
     .blank(Blank),
     .*);
