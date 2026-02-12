@@ -1,0 +1,390 @@
+
+*** Running vivado
+    with args -log ChipInterface.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source ChipInterface.tcl
+
+
+****** Vivado v2024.2 (64-bit)
+  **** SW Build 5239630 on Fri Nov 08 22:34:34 MST 2024
+  **** IP Build 5239520 on Sun Nov 10 16:12:51 MST 2024
+  **** SharedData Build 5239561 on Fri Nov 08 14:39:27 MST 2024
+  **** Start of session at: Thu Feb 12 18:22:46 2026
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
+
+source ChipInterface.tcl -notrace
+Command: synth_design -top ChipInterface -part xc7s50csga324-1
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7s50'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7s50'
+INFO: [Device 21-403] Loading part xc7s50csga324-1
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 7 processes.
+INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
+INFO: [Synth 8-7075] Helper process launched with PID 952072
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:02 ; elapsed = 00:00:02 . Memory (MB): peak = 2125.996 ; gain = 426.684 ; free physical = 13793 ; free virtual = 38417
+---------------------------------------------------------------------------------
+INFO: [Synth 8-6157] synthesizing module 'ChipInterface' [/afs/andrew.cmu.edu/usr15/kevinlu3/private/18240/Lab2/ChipInterface.sv:1]
+INFO: [Synth 8-6157] synthesizing module 'EightSevenSegmentDisplays' [/afs/andrew.cmu.edu/usr15/kevinlu3/private/18240/Lab2/seven_segment.sv:15]
+INFO: [Synth 8-6157] synthesizing module 'SevenSegmentDisplay' [/afs/andrew.cmu.edu/usr15/kevinlu3/private/18240/Lab2/seven_segment.sv:159]
+INFO: [Synth 8-6157] synthesizing module 'HextoSevenSegment' [/afs/andrew.cmu.edu/usr15/kevinlu3/private/18240/Lab2/seven_segment.sv:191]
+INFO: [Synth 8-294] found qualifier unique on case statement: implementing as parallel_case [/afs/andrew.cmu.edu/usr15/kevinlu3/private/18240/Lab2/seven_segment.sv:196]
+INFO: [Synth 8-6155] done synthesizing module 'HextoSevenSegment' (0#1) [/afs/andrew.cmu.edu/usr15/kevinlu3/private/18240/Lab2/seven_segment.sv:191]
+INFO: [Synth 8-6155] done synthesizing module 'SevenSegmentDisplay' (0#1) [/afs/andrew.cmu.edu/usr15/kevinlu3/private/18240/Lab2/seven_segment.sv:159]
+INFO: [Synth 8-6157] synthesizing module 'SSDCounter' [/afs/andrew.cmu.edu/usr15/kevinlu3/private/18240/Lab2/seven_segment.sv:132]
+	Parameter WIDTH bound to: 17 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'SSDCounter' (0#1) [/afs/andrew.cmu.edu/usr15/kevinlu3/private/18240/Lab2/seven_segment.sv:132]
+INFO: [Synth 8-6157] synthesizing module 'SSDCounter__parameterized0' [/afs/andrew.cmu.edu/usr15/kevinlu3/private/18240/Lab2/seven_segment.sv:132]
+	Parameter WIDTH bound to: 2 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'SSDCounter__parameterized0' (0#1) [/afs/andrew.cmu.edu/usr15/kevinlu3/private/18240/Lab2/seven_segment.sv:132]
+INFO: [Synth 8-6157] synthesizing module 'OneColdDecoder' [/afs/andrew.cmu.edu/usr15/kevinlu3/private/18240/Lab2/seven_segment.sv:118]
+	Parameter NUM_OUTPUTS bound to: 4 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'OneColdDecoder' (0#1) [/afs/andrew.cmu.edu/usr15/kevinlu3/private/18240/Lab2/seven_segment.sv:118]
+INFO: [Synth 8-6155] done synthesizing module 'EightSevenSegmentDisplays' (0#1) [/afs/andrew.cmu.edu/usr15/kevinlu3/private/18240/Lab2/seven_segment.sv:15]
+WARNING: [Synth 8-689] width (3) of port connection 'HEX7' does not match port width (4) of module 'EightSevenSegmentDisplays' [/afs/andrew.cmu.edu/usr15/kevinlu3/private/18240/Lab2/ChipInterface.sv:15]
+WARNING: [Synth 8-689] width (3) of port connection 'HEX6' does not match port width (4) of module 'EightSevenSegmentDisplays' [/afs/andrew.cmu.edu/usr15/kevinlu3/private/18240/Lab2/ChipInterface.sv:16]
+INFO: [Synth 8-6157] synthesizing module 'ChangeMachine' [/afs/andrew.cmu.edu/usr15/kevinlu3/private/18240/Lab2/lab2.sv:4]
+INFO: [Synth 8-6157] synthesizing module 'CompareBlock' [/afs/andrew.cmu.edu/usr15/kevinlu3/private/18240/Lab2/lab2.sv:109]
+INFO: [Synth 8-6155] done synthesizing module 'CompareBlock' (0#1) [/afs/andrew.cmu.edu/usr15/kevinlu3/private/18240/Lab2/lab2.sv:109]
+INFO: [Synth 8-6157] synthesizing module 'Subtracter' [/afs/andrew.cmu.edu/usr15/kevinlu3/private/18240/Lab2/lab2.sv:125]
+INFO: [Synth 8-6155] done synthesizing module 'Subtracter' (0#1) [/afs/andrew.cmu.edu/usr15/kevinlu3/private/18240/Lab2/lab2.sv:125]
+INFO: [Synth 8-6157] synthesizing module 'CoinPick' [/afs/andrew.cmu.edu/usr15/kevinlu3/private/18240/Lab2/lab2.sv:137]
+INFO: [Synth 8-6157] synthesizing module 'UpdateInventory' [/afs/andrew.cmu.edu/usr15/kevinlu3/private/18240/Lab2/lab2.sv:183]
+INFO: [Synth 8-6155] done synthesizing module 'UpdateInventory' (0#1) [/afs/andrew.cmu.edu/usr15/kevinlu3/private/18240/Lab2/lab2.sv:183]
+INFO: [Synth 8-6155] done synthesizing module 'CoinPick' (0#1) [/afs/andrew.cmu.edu/usr15/kevinlu3/private/18240/Lab2/lab2.sv:137]
+WARNING: [Synth 8-7071] port 'After_P' of module 'CoinPick' is unconnected for instance 'u_pick_second' [/afs/andrew.cmu.edu/usr15/kevinlu3/private/18240/Lab2/lab2.sv:68]
+WARNING: [Synth 8-7071] port 'After_T' of module 'CoinPick' is unconnected for instance 'u_pick_second' [/afs/andrew.cmu.edu/usr15/kevinlu3/private/18240/Lab2/lab2.sv:68]
+WARNING: [Synth 8-7071] port 'After_C' of module 'CoinPick' is unconnected for instance 'u_pick_second' [/afs/andrew.cmu.edu/usr15/kevinlu3/private/18240/Lab2/lab2.sv:68]
+WARNING: [Synth 8-7023] instance 'u_pick_second' of module 'CoinPick' has 9 connections declared, but only 6 given [/afs/andrew.cmu.edu/usr15/kevinlu3/private/18240/Lab2/lab2.sv:68]
+INFO: [Synth 8-6155] done synthesizing module 'ChangeMachine' (0#1) [/afs/andrew.cmu.edu/usr15/kevinlu3/private/18240/Lab2/lab2.sv:4]
+INFO: [Synth 8-6155] done synthesizing module 'ChipInterface' (0#1) [/afs/andrew.cmu.edu/usr15/kevinlu3/private/18240/Lab2/ChipInterface.sv:1]
+WARNING: [Synth 8-7129] Port LD[12] in module ChipInterface is either unconnected or has no load
+WARNING: [Synth 8-7129] Port LD[11] in module ChipInterface is either unconnected or has no load
+WARNING: [Synth 8-7129] Port LD[10] in module ChipInterface is either unconnected or has no load
+WARNING: [Synth 8-7129] Port LD[9] in module ChipInterface is either unconnected or has no load
+WARNING: [Synth 8-7129] Port LD[8] in module ChipInterface is either unconnected or has no load
+WARNING: [Synth 8-7129] Port LD[7] in module ChipInterface is either unconnected or has no load
+WARNING: [Synth 8-7129] Port LD[6] in module ChipInterface is either unconnected or has no load
+WARNING: [Synth 8-7129] Port LD[5] in module ChipInterface is either unconnected or has no load
+WARNING: [Synth 8-7129] Port LD[4] in module ChipInterface is either unconnected or has no load
+WARNING: [Synth 8-7129] Port LD[3] in module ChipInterface is either unconnected or has no load
+WARNING: [Synth 8-7129] Port LD[2] in module ChipInterface is either unconnected or has no load
+WARNING: [Synth 8-7129] Port LD[1] in module ChipInterface is either unconnected or has no load
+WARNING: [Synth 8-7129] Port LD[0] in module ChipInterface is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SW[5] in module ChipInterface is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SW[4] in module ChipInterface is either unconnected or has no load
+WARNING: [Synth 8-7129] Port BTN[3] in module ChipInterface is either unconnected or has no load
+WARNING: [Synth 8-7129] Port BTN[1] in module ChipInterface is either unconnected or has no load
+WARNING: [Synth 8-7129] Port BTN[0] in module ChipInterface is either unconnected or has no load
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 2197.965 ; gain = 498.652 ; free physical = 13712 ; free virtual = 38338
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 2215.777 ; gain = 516.465 ; free physical = 13702 ; free virtual = 38328
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 2215.777 ; gain = 516.465 ; free physical = 13702 ; free virtual = 38328
+---------------------------------------------------------------------------------
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2215.777 ; gain = 0.000 ; free physical = 13702 ; free virtual = 38328
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Parsing XDC File [/afs/andrew.cmu.edu/usr15/kevinlu3/private/18240/SharedFiles/Boolean240.xdc]
+WARNING: [Vivado 12-507] No nets matched 'BTN_IBUF[3]'. [/afs/andrew.cmu.edu/usr15/kevinlu3/private/18240/SharedFiles/Boolean240.xdc:6]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/afs/andrew.cmu.edu/usr15/kevinlu3/private/18240/SharedFiles/Boolean240.xdc:6]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'RGB0[0]'. [/afs/andrew.cmu.edu/usr15/kevinlu3/private/18240/SharedFiles/Boolean240.xdc:55]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/afs/andrew.cmu.edu/usr15/kevinlu3/private/18240/SharedFiles/Boolean240.xdc:55]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'RGB0[1]'. [/afs/andrew.cmu.edu/usr15/kevinlu3/private/18240/SharedFiles/Boolean240.xdc:56]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/afs/andrew.cmu.edu/usr15/kevinlu3/private/18240/SharedFiles/Boolean240.xdc:56]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'RGB0[2]'. [/afs/andrew.cmu.edu/usr15/kevinlu3/private/18240/SharedFiles/Boolean240.xdc:57]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/afs/andrew.cmu.edu/usr15/kevinlu3/private/18240/SharedFiles/Boolean240.xdc:57]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'RGB1[0]'. [/afs/andrew.cmu.edu/usr15/kevinlu3/private/18240/SharedFiles/Boolean240.xdc:58]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/afs/andrew.cmu.edu/usr15/kevinlu3/private/18240/SharedFiles/Boolean240.xdc:58]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'RGB1[1]'. [/afs/andrew.cmu.edu/usr15/kevinlu3/private/18240/SharedFiles/Boolean240.xdc:59]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/afs/andrew.cmu.edu/usr15/kevinlu3/private/18240/SharedFiles/Boolean240.xdc:59]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'RGB1[2]'. [/afs/andrew.cmu.edu/usr15/kevinlu3/private/18240/SharedFiles/Boolean240.xdc:60]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/afs/andrew.cmu.edu/usr15/kevinlu3/private/18240/SharedFiles/Boolean240.xdc:60]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'UART_rxd'. [/afs/andrew.cmu.edu/usr15/kevinlu3/private/18240/SharedFiles/Boolean240.xdc:91]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/afs/andrew.cmu.edu/usr15/kevinlu3/private/18240/SharedFiles/Boolean240.xdc:91]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'UART_txd'. [/afs/andrew.cmu.edu/usr15/kevinlu3/private/18240/SharedFiles/Boolean240.xdc:92]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/afs/andrew.cmu.edu/usr15/kevinlu3/private/18240/SharedFiles/Boolean240.xdc:92]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'hdmi_clk_n'. [/afs/andrew.cmu.edu/usr15/kevinlu3/private/18240/SharedFiles/Boolean240.xdc:95]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/afs/andrew.cmu.edu/usr15/kevinlu3/private/18240/SharedFiles/Boolean240.xdc:95]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'hdmi_clk_p'. [/afs/andrew.cmu.edu/usr15/kevinlu3/private/18240/SharedFiles/Boolean240.xdc:96]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/afs/andrew.cmu.edu/usr15/kevinlu3/private/18240/SharedFiles/Boolean240.xdc:96]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'hdmi_tx_n[0]'. [/afs/andrew.cmu.edu/usr15/kevinlu3/private/18240/SharedFiles/Boolean240.xdc:98]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/afs/andrew.cmu.edu/usr15/kevinlu3/private/18240/SharedFiles/Boolean240.xdc:98]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'hdmi_tx_n[1]'. [/afs/andrew.cmu.edu/usr15/kevinlu3/private/18240/SharedFiles/Boolean240.xdc:99]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/afs/andrew.cmu.edu/usr15/kevinlu3/private/18240/SharedFiles/Boolean240.xdc:99]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'hdmi_tx_n[2]'. [/afs/andrew.cmu.edu/usr15/kevinlu3/private/18240/SharedFiles/Boolean240.xdc:100]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/afs/andrew.cmu.edu/usr15/kevinlu3/private/18240/SharedFiles/Boolean240.xdc:100]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'hdmi_tx_p[0]'. [/afs/andrew.cmu.edu/usr15/kevinlu3/private/18240/SharedFiles/Boolean240.xdc:102]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/afs/andrew.cmu.edu/usr15/kevinlu3/private/18240/SharedFiles/Boolean240.xdc:102]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'hdmi_tx_p[1]'. [/afs/andrew.cmu.edu/usr15/kevinlu3/private/18240/SharedFiles/Boolean240.xdc:103]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/afs/andrew.cmu.edu/usr15/kevinlu3/private/18240/SharedFiles/Boolean240.xdc:103]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'hdmi_tx_p[2]'. [/afs/andrew.cmu.edu/usr15/kevinlu3/private/18240/SharedFiles/Boolean240.xdc:104]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/afs/andrew.cmu.edu/usr15/kevinlu3/private/18240/SharedFiles/Boolean240.xdc:104]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'left_audio_out'. [/afs/andrew.cmu.edu/usr15/kevinlu3/private/18240/SharedFiles/Boolean240.xdc:107]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/afs/andrew.cmu.edu/usr15/kevinlu3/private/18240/SharedFiles/Boolean240.xdc:107]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'right_audio_out'. [/afs/andrew.cmu.edu/usr15/kevinlu3/private/18240/SharedFiles/Boolean240.xdc:108]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/afs/andrew.cmu.edu/usr15/kevinlu3/private/18240/SharedFiles/Boolean240.xdc:108]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'ble_uart_tx'. [/afs/andrew.cmu.edu/usr15/kevinlu3/private/18240/SharedFiles/Boolean240.xdc:111]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/afs/andrew.cmu.edu/usr15/kevinlu3/private/18240/SharedFiles/Boolean240.xdc:111]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'ble_uart_rx'. [/afs/andrew.cmu.edu/usr15/kevinlu3/private/18240/SharedFiles/Boolean240.xdc:112]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/afs/andrew.cmu.edu/usr15/kevinlu3/private/18240/SharedFiles/Boolean240.xdc:112]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'ble_uart_rts'. [/afs/andrew.cmu.edu/usr15/kevinlu3/private/18240/SharedFiles/Boolean240.xdc:113]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/afs/andrew.cmu.edu/usr15/kevinlu3/private/18240/SharedFiles/Boolean240.xdc:113]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'ble_uart_cts'. [/afs/andrew.cmu.edu/usr15/kevinlu3/private/18240/SharedFiles/Boolean240.xdc:114]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/afs/andrew.cmu.edu/usr15/kevinlu3/private/18240/SharedFiles/Boolean240.xdc:114]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'servo0'. [/afs/andrew.cmu.edu/usr15/kevinlu3/private/18240/SharedFiles/Boolean240.xdc:117]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/afs/andrew.cmu.edu/usr15/kevinlu3/private/18240/SharedFiles/Boolean240.xdc:117]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'servo1'. [/afs/andrew.cmu.edu/usr15/kevinlu3/private/18240/SharedFiles/Boolean240.xdc:118]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/afs/andrew.cmu.edu/usr15/kevinlu3/private/18240/SharedFiles/Boolean240.xdc:118]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'servo2'. [/afs/andrew.cmu.edu/usr15/kevinlu3/private/18240/SharedFiles/Boolean240.xdc:119]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/afs/andrew.cmu.edu/usr15/kevinlu3/private/18240/SharedFiles/Boolean240.xdc:119]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'servo3'. [/afs/andrew.cmu.edu/usr15/kevinlu3/private/18240/SharedFiles/Boolean240.xdc:120]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/afs/andrew.cmu.edu/usr15/kevinlu3/private/18240/SharedFiles/Boolean240.xdc:120]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+Finished Parsing XDC File [/afs/andrew.cmu.edu/usr15/kevinlu3/private/18240/SharedFiles/Boolean240.xdc]
+INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [/afs/andrew.cmu.edu/usr15/kevinlu3/private/18240/SharedFiles/Boolean240.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/ChipInterface_propImpl.xdc].
+Resolution: To avoid this warning, move constraints listed in [.Xil/ChipInterface_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
+Completed Processing XDC Constraints
+
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2357.527 ; gain = 0.000 ; free physical = 13653 ; free virtual = 38288
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2357.527 ; gain = 0.000 ; free physical = 13653 ; free virtual = 38289
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 2357.527 ; gain = 658.215 ; free physical = 13653 ; free virtual = 38289
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xc7s50csga324-1
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 2365.531 ; gain = 666.219 ; free physical = 13653 ; free virtual = 38289
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying 'set_property' XDC Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 2365.531 ; gain = 666.219 ; free physical = 13653 ; free virtual = 38289
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:06 ; elapsed = 00:00:07 . Memory (MB): peak = 2365.531 ; gain = 666.219 ; free physical = 13650 ; free virtual = 38287
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
++---Adders : 
+	   3 Input    4 Bit       Adders := 3     
+	   2 Input    4 Bit       Adders := 1     
+	   2 Input    2 Bit       Adders := 1     
+	   3 Input    2 Bit       Adders := 6     
++---Registers : 
+	                2 Bit    Registers := 1     
++---Muxes : 
+	   2 Input    8 Bit        Muxes := 8     
+	   4 Input    8 Bit        Muxes := 2     
+	   2 Input    6 Bit        Muxes := 1     
+	   2 Input    4 Bit        Muxes := 1     
+	   2 Input    3 Bit        Muxes := 2     
+	   2 Input    2 Bit        Muxes := 3     
+	   2 Input    1 Bit        Muxes := 8     
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 120 (col length:60)
+BRAMs: 150 (col length: RAMB18 60 RAMB36 30)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
+WARNING: [Synth 8-3917] design ChipInterface has port D2_SEG[7] driven by constant 1
+WARNING: [Synth 8-3917] design ChipInterface has port D2_SEG[6] driven by constant 1
+WARNING: [Synth 8-3917] design ChipInterface has port D2_SEG[5] driven by constant 1
+WARNING: [Synth 8-3917] design ChipInterface has port D2_SEG[4] driven by constant 1
+WARNING: [Synth 8-3917] design ChipInterface has port D2_SEG[3] driven by constant 1
+WARNING: [Synth 8-3917] design ChipInterface has port D2_SEG[2] driven by constant 1
+WARNING: [Synth 8-3917] design ChipInterface has port D2_SEG[1] driven by constant 1
+WARNING: [Synth 8-3917] design ChipInterface has port D2_SEG[0] driven by constant 1
+WARNING: [Synth 8-7129] Port LD[12] in module ChipInterface is either unconnected or has no load
+WARNING: [Synth 8-7129] Port LD[11] in module ChipInterface is either unconnected or has no load
+WARNING: [Synth 8-7129] Port LD[10] in module ChipInterface is either unconnected or has no load
+WARNING: [Synth 8-7129] Port LD[9] in module ChipInterface is either unconnected or has no load
+WARNING: [Synth 8-7129] Port LD[8] in module ChipInterface is either unconnected or has no load
+WARNING: [Synth 8-7129] Port LD[7] in module ChipInterface is either unconnected or has no load
+WARNING: [Synth 8-7129] Port LD[6] in module ChipInterface is either unconnected or has no load
+WARNING: [Synth 8-7129] Port LD[5] in module ChipInterface is either unconnected or has no load
+WARNING: [Synth 8-7129] Port LD[4] in module ChipInterface is either unconnected or has no load
+WARNING: [Synth 8-7129] Port LD[3] in module ChipInterface is either unconnected or has no load
+WARNING: [Synth 8-7129] Port LD[2] in module ChipInterface is either unconnected or has no load
+WARNING: [Synth 8-7129] Port LD[1] in module ChipInterface is either unconnected or has no load
+WARNING: [Synth 8-7129] Port LD[0] in module ChipInterface is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SW[5] in module ChipInterface is either unconnected or has no load
+WARNING: [Synth 8-7129] Port SW[4] in module ChipInterface is either unconnected or has no load
+WARNING: [Synth 8-7129] Port BTN[3] in module ChipInterface is either unconnected or has no load
+WARNING: [Synth 8-7129] Port BTN[1] in module ChipInterface is either unconnected or has no load
+WARNING: [Synth 8-7129] Port BTN[0] in module ChipInterface is either unconnected or has no load
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 2365.531 ; gain = 666.219 ; free physical = 13651 ; free virtual = 38297
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying XDC Timing Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:10 ; elapsed = 00:00:11 . Memory (MB): peak = 2401.531 ; gain = 702.219 ; free physical = 13568 ; free virtual = 38221
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:00:10 ; elapsed = 00:00:11 . Memory (MB): peak = 2401.531 ; gain = 702.219 ; free physical = 13568 ; free virtual = 38221
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:00:10 ; elapsed = 00:00:11 . Memory (MB): peak = 2418.555 ; gain = 719.242 ; free physical = 13554 ; free virtual = 38207
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:00:11 ; elapsed = 00:00:12 . Memory (MB): peak = 2572.367 ; gain = 873.055 ; free physical = 13411 ; free virtual = 38064
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:11 ; elapsed = 00:00:12 . Memory (MB): peak = 2572.367 ; gain = 873.055 ; free physical = 13411 ; free virtual = 38064
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:11 ; elapsed = 00:00:12 . Memory (MB): peak = 2572.367 ; gain = 873.055 ; free physical = 13411 ; free virtual = 38064
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:11 ; elapsed = 00:00:12 . Memory (MB): peak = 2572.367 ; gain = 873.055 ; free physical = 13411 ; free virtual = 38064
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:11 ; elapsed = 00:00:12 . Memory (MB): peak = 2572.367 ; gain = 873.055 ; free physical = 13411 ; free virtual = 38064
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:11 ; elapsed = 00:00:12 . Memory (MB): peak = 2572.367 ; gain = 873.055 ; free physical = 13411 ; free virtual = 38064
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++-+--------------+----------+
+| |BlackBox name |Instances |
++-+--------------+----------+
++-+--------------+----------+
+
+Report Cell Usage: 
++------+-------+------+
+|      |Cell   |Count |
++------+-------+------+
+|1     |BUFG   |     1|
+|2     |CARRY4 |     5|
+|3     |LUT1   |     1|
+|4     |LUT2   |    28|
+|5     |LUT3   |     8|
+|6     |LUT4   |     9|
+|7     |LUT5   |    15|
+|8     |LUT6   |    31|
+|9     |FDCE   |    19|
+|10    |IBUF   |    16|
+|11    |OBUF   |    27|
+|12    |OBUFT  |    13|
++------+-------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:11 ; elapsed = 00:00:12 . Memory (MB): peak = 2572.367 ; gain = 873.055 ; free physical = 13411 ; free virtual = 38064
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 27 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:11 ; elapsed = 00:00:11 . Memory (MB): peak = 2572.367 ; gain = 731.305 ; free physical = 13408 ; free virtual = 38061
+Synthesis Optimization Complete : Time (s): cpu = 00:00:11 ; elapsed = 00:00:12 . Memory (MB): peak = 2572.375 ; gain = 873.055 ; free physical = 13408 ; free virtual = 38061
+INFO: [Project 1-571] Translating synthesized netlist
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2572.375 ; gain = 0.000 ; free physical = 13408 ; free virtual = 38061
+INFO: [Netlist 29-17] Analyzing 5 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2628.395 ; gain = 0.000 ; free physical = 13575 ; free virtual = 38227
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Synth Design complete | Checksum: dff06a9a
+INFO: [Common 17-83] Releasing license: Synthesis
+40 Infos, 78 Warnings, 27 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:00:15 ; elapsed = 00:00:15 . Memory (MB): peak = 2628.395 ; gain = 1089.539 ; free physical = 13574 ; free virtual = 38227
+INFO: [Common 17-2834] synth_design peak Physical Memory [PSS] (MB): overall = 1773.686; main = 1767.067; forked = 273.883
+INFO: [Common 17-2834] synth_design peak Virtual Memory [VSS] (MB): overall = 3304.031; main = 2628.398; forked = 938.496
+INFO: [runtcl-6] Synthesis results are not added to the cache due to CRITICAL_WARNING
+Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.01 . Memory (MB): peak = 2652.406 ; gain = 0.000 ; free physical = 13575 ; free virtual = 38228
+INFO: [Common 17-1381] The checkpoint '/afs/andrew.cmu.edu/usr15/kevinlu3/private/18240/Lab2/Change_Machine_Implementation/Change_Machine_Implementation.runs/synth_1/ChipInterface.dcp' has been generated.
+INFO: [Vivado 12-24828] Executing command : report_utilization -file ChipInterface_utilization_synth.rpt -pb ChipInterface_utilization_synth.pb
+INFO: [Common 17-206] Exiting Vivado at Thu Feb 12 18:23:08 2026...
