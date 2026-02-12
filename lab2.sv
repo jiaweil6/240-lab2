@@ -25,7 +25,8 @@ module ChangeMachine (
   logic [3:0] FirstCoin4, SecondCoin4; // chosen coins (0/1/3/5)
 
   logic [1:0] P1, T1, C1;        // availability AFTER first coin
-  logic [3:0] Rem1;              // remaining after first coin (Change - FCval)
+  logic [3:0] Rem1;              // remaining after first coin
+  logic [3:0] Rem2;              // remaining after second coin
 
   // Submodule instances
   CompareBlock u_cmp (
@@ -77,13 +78,16 @@ module ChangeMachine (
   Subtracter u_rem_final (
     .A(Rem1),
     .B(SecondCoin4),
-    .AmB(Remaining)
+    .AmB(Rem2)
   );
 
   always_comb begin
     // if cough up more, remaining is 0
     if (CoughUpMore) begin
       Remaining = 4'b0000;
+    end
+    else begin
+      Remaining = Rem2;
     end
   end
 

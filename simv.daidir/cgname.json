@@ -11,6 +11,30 @@
         "module",
         7
     ],
+    "CompareBlock_tb": [
+        "CompareBlock_tb",
+        "zKC0J",
+        "module",
+        6
+    ],
+    "Subtracter_tb": [
+        "Subtracter_tb",
+        "V2YDM",
+        "module",
+        5
+    ],
+    "CoinPick_tb": [
+        "CoinPick_tb",
+        "PBx8C",
+        "module",
+        4
+    ],
+    "UpdateInventory_tb": [
+        "UpdateInventory_tb",
+        "gW2nx",
+        "module",
+        3
+    ],
     "ChangeMachine_tb": [
         "ChangeMachine_tb",
         "A19fi",

@@ -1,5 +1,5 @@
 0 
-25
+23
 -Mamsrun=
 -Masflags=
 -Mcc=gcc
@@ -20,9 +20,7 @@
 -gen_obj
 -picarchive
 -sverilog
--top
 /afs/ece.cmu.edu/support/synopsys/synopsys.release/T-Foundation/vcs/T-2022.06/linux64/bin/vcs1
-ChangeMachine_tb
 lab2.sv
 lab2_test.sv
 58
@@ -88,11 +86,11 @@ BASH_FUNC__module_raw%%=() {  unset _mlshdbg;_ if [ "${MODULES_SILENT_SHELL_DEBU
 0
 2
 1770836811 lab2_test.sv
-1770935083 lab2.sv
+1770936527 lab2.sv
 4
 1654054205 /afs/ece.cmu.edu/support/synopsys/synopsys.release/T-Foundation/vcs/T-2022.06/linux64/lib/libvirsim.so
 1654053585 /afs/ece.cmu.edu/support/synopsys/synopsys.release/T-Foundation/vcs/T-2022.06/linux64/lib/liberrorinf.so
 1654053489 /afs/ece.cmu.edu/support/synopsys/synopsys.release/T-Foundation/vcs/T-2022.06/linux64/lib/libsnpsmalloc.so
 1654053565 /afs/ece.cmu.edu/support/synopsys/synopsys.release/T-Foundation/vcs/T-2022.06/linux64/lib/libvfs.so
-1770935409 simv.daidir
+1770936558 simv.daidir
 -1 partitionlib
