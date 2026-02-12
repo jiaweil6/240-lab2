@@ -18,12 +18,11 @@ module ChangeMachine (
 );
 
   // Internal wires
-  logic PeqC, PltC, PgtC;        // compare flags
+  logic PeqC;                    // compare flags
   logic ChangeNeeded;            // CgtP (Paid > Cost)
   logic [3:0] Change;            // Paid - Cost
 
   logic [3:0] FirstCoin4, SecondCoin4; // chosen coins (0/1/3/5)
-  logic [3:0] FCval, SCval;    // numeric value of chosen coin (0/1/3/5)
 
   logic [1:0] P1, T1, C1;        // availability AFTER first coin
   logic [3:0] Rem1;              // remaining after first coin (Change - FCval)
@@ -33,14 +32,12 @@ module ChangeMachine (
     .Cost(Cost),
     .Paid(Paid),
     .PeqC(PeqC),
-    .PltC(PltC),
-    .PgtC(PgtC)
+    .PltC(CoughUpMore),
+    .PgtC(ChangeNeeded)
   );
 
   // Compare-derived signals / LEDs
   assign ExactAmount = PeqC && (Paid != 4'b0000);
-  assign CoughUpMore = PltC;
-  assign ChangeNeeded = PgtC;
 
   Subtracter u_sub (
     .A(Paid),
@@ -60,11 +57,10 @@ module ChangeMachine (
     .After_C(C1)
   );
 
-  assign FCval = FirstCoin4;
 
   Subtracter u_rem1 (
     .A(Change),
-    .B(FCval),
+    .B(FirstCoin4),
     .AmB(Rem1)
   );
 
@@ -77,11 +73,10 @@ module ChangeMachine (
     .Coin(SecondCoin4)
   );
 
-  assign SCval = SecondCoin4;
 
   Subtracter u_rem_final (
-    .A(Change),
-    .B(FCval + SCval),
+    .A(Rem1),
+    .B(SecondCoin4),
     .AmB(Remaining)
   );
 
