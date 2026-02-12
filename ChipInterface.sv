@@ -7,17 +7,18 @@ module ChipInterface
  input  logic        CLOCK_100); // needed for 7 Segs
 
   logic [2:0] FirstCoin, SecondCoin;
+  logic [7:0] Blank;
+  logic [3:0] Remaining, Remaining0, Remaining1;
 
   EightSevenSegmentDisplays disp (
     .reset(BTN[2]),
     .HEX7(FirstCoin),
     .HEX6(SecondCoin),
+    .HEX5(Remaining1),
+    .HEX4(Remaining0),
+    .dec_points(8'b0000_0000),
+    .blank(Blank),
     .*);
-
-  // Instantiate your design module here
-  // Use assign statements to connect inputs / outputs to
-  // the ChipInterface inputs / outputs
-  // Add other code as necessary ( like a display driver )
 
   ChangeMachine u_change_machine (
     .Cost(SW[15:12]),
@@ -27,8 +28,22 @@ module ChipInterface
     .Paid(SW[3:0]),
     .FirstCoin(FirstCoin),
     .SecondCoin(SecondCoin),
+    .Remaining(Remaining),
     .ExactAmount(LD[15]),
     .NotEnoughChange(LD[14]),
     .CoughUpMore(LD[13]));
+
+  always_comb begin
+    Blank = 8'b0000_1111;
+    if (Remaining >= 4'd10) begin
+      Remaining0 = Remaining - 4'd10;
+      Remaining1 = 4'd1;
+    end 
+    else begin 
+      Remaining0 = Remaining;
+      Remaining1 = 4'd0;
+      Blank[5] = 1'b1;
+    end
+  end
 
 endmodule : ChipInterface
